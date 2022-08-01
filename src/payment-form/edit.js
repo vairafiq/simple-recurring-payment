@@ -30,6 +30,7 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
+	console.log( attributes );
 	return (
 		<div>
 			<div>
@@ -43,19 +44,19 @@ export default function Edit( { attributes, setAttributes } ) {
 				</p>
 				<p>
 					<label for='srp_price'>{ __( 'Price', 'srp' ) }</label>
-					<input id='srp_price' type='number' className='srp_price'/>
+					<input id='srp_price' value={ attributes.price } onChange={ ( event ) => { setAttributes( { price: event.target.value } ) } } type='number' className='srp_price'/>
 				</p>
 				<p>
 					<label for='srp_vat'>{ __( 'Vat', 'srp' ) }</label>
-					<input id='srp_vat' type='number' className='srp_vat'/>
+					<input id='srp_vat' value={ attributes.vat } onChange={ ( event ) => { setAttributes( { vat: event.target.value } ) } } type='number' className='srp_vat'/>
 				</p>
 				<p>
 					<label for='srp_recurring'>{ __( 'Allow Recurring', 'srp' ) }</label>
-					<input id='srp_recurring' type='checkbox' value='1' className='srp_recurring'/>
+					<input id='srp_recurring' value={ attributes.recurring } onChange={ ( event ) => { setAttributes( { recurring: event.target.value } ) } } type='checkbox' className='srp_recurring'/>
 				</p>
 				<p>
 					<label for='srp_gateway'>{ __( 'Default Gateway', 'srp' ) }</label>
-					<select id='srp_gateway' className='srp_gateway'>
+					<select id='srp_gateway' value={ attributes.gateway } onChange={ ( event ) => { setAttributes( { gateway: event.target.value } ) } } className='srp_gateway'>
 						<option value='stripe'>{ __( 'Stripe', 'srp' ) }</option>
 						<option value='paypal'>{ __( 'PayPal', 'srp' ) }</option>
 						<option value='authorize'>{ __( 'Authorize.net', 'srp' ) }</option>
@@ -64,7 +65,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</p>
 				<p>
 					<label for='srp_recurring_term'>{ __( 'Default Recurring Term', 'srp' ) }</label>
-					<select id='srp_recurring_term' className='srp_recurring_term'>
+					<select id='srp_recurring_term' value={ attributes.recurring_term } onChange={ ( event ) => { setAttributes( { recurring_term: event.target.value } ) } } className='srp_recurring_term'>
 						<option value='yearly'>{ __( 'Yearly', 'srp' ) }</option>
 						<option value='monthly'>{ __( 'Monthly', 'srp' ) }</option>
 						<option value='weekly'>{ __( 'Weekly', 'srp' ) }</option>
