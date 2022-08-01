@@ -44,8 +44,7 @@
 			 <form className='srpHeader'	method="POST">
 				 <input type="number" placeholder="Enter Amount to Donate"></input>
 				 if(args.attributes.recurring) {
-					 <input type="radio" name="srpRecurring" value="yes">Yes</input>
-					 <input type="radio" name="srpRecurring" value="no">No</input>
+					 <><input type="radio" name="srpRecurring" value="yes">Yes</input><input type="radio" name="srpRecurring" value="no">No</input></>
 				 }
 				 if(args.attributes.recurring_term) {
 					 <select id="srpRecurringTerm">
