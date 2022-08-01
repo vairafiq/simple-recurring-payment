@@ -29,7 +29,7 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit( {attributes, setAttributes} ) {
+export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div>
 			<div>
@@ -39,7 +39,7 @@ export default function Edit( {attributes, setAttributes} ) {
 			<div className='srp_admin_form'>
 				<p>
 					<label for='srp_title'>{ __( 'Title', 'srp' ) }</label>
-					<input id='srp_title' value={attributes.title} onChange={ ( event ) => { setAttributes( { title: event.target.value } ) } } type='text' className='srp_title'/>
+					<input id='srp_title' value={ attributes.title } onChange={ ( event ) => { setAttributes( { title: event.target.value } ) } } type='text' className='srp_title'/>
 				</p>
 				<p>
 					<label for='srp_price'>{ __( 'Price', 'srp' ) }</label>
