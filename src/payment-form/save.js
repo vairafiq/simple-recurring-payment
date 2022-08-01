@@ -24,29 +24,27 @@
  export default function save ( args )
  {
 	 return (
-		 <>
+		 <div>
 			 <h1 className='srpHeader'>{ args.attributes.title }</h1>
 			 <div className='srpDetails'>
-				 if(args.attributes.price) {
-					 <p className='srpDetails'> { args.attributes.price }</p>
-				 }
-				 if(args.attributes.recurring) {
+				{args.attributes.price && <p className='srpDetails'> { args.attributes.price }</p>}
+				 {args.attributes.recurring &&
 					 <p className='srpDetails'> { args.attributes.recurring }</p>
 				 }
-				 if(args.attributes.recurring_term) {
+				 { args.attributes.recurring_term &&
 					 <p className='srpDetails'> { args.attributes.recurring_term }</p>
 				 }
 				 <p className='srpDetails'> { args.attributes.gateway }</p>
-				 if(args.attributes.vat) {
+				 { args.attributes.vat &&
 					 <p className='srpDetails'> { args.attributes.vat }</p>
 				 }
 			 </div>
 			 <form className='srpHeader'	method="POST">
 				 <input type="number" placeholder="Enter Amount to Donate"></input>
-				 if(args.attributes.recurring) {
+				 { args.attributes.recurring &&
 					 <><input type="radio" name="srpRecurring" value="yes">Yes</input><input type="radio" name="srpRecurring" value="no">No</input></>
 				 }
-				 if(args.attributes.recurring_term) {
+				 { args.attributes.recurring_term &&
 					 <select id="srpRecurringTerm">
 						 <option className="daily">Daily</option>
 						 <option className="weekly">Weekly</option>
@@ -54,8 +52,8 @@
 						 <option className="yearly">Yearly</option>
 					 </select>
 				 }
-				 <button type="submit" onClick={ submitData }> Donate Now </button>
+				 <button type="submit"> Donate Now </button>
 			 </form>
-		 </>
+		 </div>
 	 );
  }

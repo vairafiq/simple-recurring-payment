@@ -190,8 +190,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
 
 
 /**
@@ -207,7 +205,6 @@ __webpack_require__.r(__webpack_exports__);
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 
-
 /**
  * The save function defines the way in which the different attributes should
  * be combined into the final markup, which is then serialized by the block
@@ -218,8 +215,48 @@ __webpack_require__.r(__webpack_exports__);
  * @return {WPElement} Element to render.
  */
 
-function save() {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save(), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Hackathon – hello from the saved content!', 'hackathon'));
+function save(args) {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "srpHeader"
+  }, args.attributes.title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "srpDetails"
+  }, args.attributes.price && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "srpDetails"
+  }, " ", args.attributes.price), args.attributes.recurring && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "srpDetails"
+  }, " ", args.attributes.recurring), args.attributes.recurring_term && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "srpDetails"
+  }, " ", args.attributes.recurring_term), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "srpDetails"
+  }, " ", args.attributes.gateway), args.attributes.vat && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "srpDetails"
+  }, " ", args.attributes.vat)), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("form", {
+    className: "srpHeader",
+    method: "POST"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "number",
+    placeholder: "Enter Amount to Donate"
+  }), args.attributes.recurring && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "radio",
+    name: "srpRecurring",
+    value: "yes"
+  }, "Yes"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
+    type: "radio",
+    name: "srpRecurring",
+    value: "no"
+  }, "No")), args.attributes.recurring_term && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("select", {
+    id: "srpRecurringTerm"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    className: "daily"
+  }, "Daily"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    className: "weekly"
+  }, "Weekly"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    className: "monthly"
+  }, "Monthly"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("option", {
+    className: "yearly"
+  }, "Yearly")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+    type: "submit"
+  }, " Donate Now ")));
 }
 
 /***/ }),
