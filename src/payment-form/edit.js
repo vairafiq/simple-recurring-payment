@@ -32,7 +32,7 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 	console.log( attributes );
 	return (
-		<div>
+		<div {...useBlockProps()} >
 			<div>
 				<h4>{ __( 'Payment Form', 'srp' ) }</h4>
 				<p>{ __( 'Start collecting money right way!', 'srp' ) }</p>
