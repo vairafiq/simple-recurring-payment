@@ -1,0 +1,12 @@
+==== Settings ====
+
+* Enable Test Mode
+* Test Public Key
+* Test Secret Key
+
+* Live Public Key
+* Live Secret Key
+
+* Currency Code
+
+* Payment Confirmation Page
