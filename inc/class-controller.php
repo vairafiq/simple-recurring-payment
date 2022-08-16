@@ -167,6 +167,10 @@ if (!class_exists('SRP_Controller')) :
                 'exclude_from_search'   => false,
                 'publicly_queryable'    => true,
                 'capability_type'       => 'page',
+                'capabilities' => array(
+                    'create_posts' => false, // Removes support for the "Add New" function ( use 'do_not_allow' instead of false for multisite set ups )
+                  ),
+                'map_meta_cap' => true, // Set to `false`, if users are not allowed to edit/delete existing posts
             );
             register_post_type( 'srp_orders', $args );
         }
