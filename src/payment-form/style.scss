@@ -29,3 +29,91 @@
 	width: unset;
   }
 
+.srpContainer {
+	width: 100%;
+	background-color:ivory;
+	padding: 25px;
+}
+.srpHeader, .srpSubHeader, .srpTitle {
+	text-align: center;
+	padding: 15px;
+	font-weight: 700;
+	color: #07796B;
+}
+.srpHeader {
+	font-size: 3rem;
+}
+.srpSubHeader {
+	font-size: 2rem;
+}
+.srpTitle {
+	font-size: 1.5rem;
+}
+.srpDetails {
+	width: 100%;
+}
+.srpDetailsBlock {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 15px;
+	background-color: #DAEBE9;
+	margin: 5px 0;
+	border-radius: 25px;
+}
+.srpDetailsBlock p, .srpDetailsBlock select {
+	display: inline-block;
+	width: 45%;
+	margin: 0;
+	font-weight: 600;
+}
+.srpDetailsBlock select {
+	background-color: #DAEBE9;
+	padding: 10px;
+	border-radius: 5px;
+	border-width: 2px;
+	border-color: Black;
+	font-size: 15px;
+}
+.srpDetailsBlock select option{
+	font-weight: 600;
+	font-size: 15px;
+}
+.srpDetailsBlock p::first-letter {
+	text-transform: capitalize;
+}
+.srpDetailsLabel {
+	font-weight: 600;
+	margin: 0 5px;
+}
+
+.srpPaymentForm {
+	width: 100%;
+}
+.srpSubmitButton {
+	display: block;
+	padding: 15px;
+	margin: 25px 0 0 auto;
+	border-radius: 15px;
+	background-color: #07796B;
+	border: 1px solid #07796B;
+	color: white;
+	font-size: large;
+	font-weight: 600;
+}
+.srpSubmitButton:hover {
+	background-color: white;
+	color: #07796B;
+	cursor: pointer;
+}
+
+#srp_price {
+	display: inline-block;
+	width: 45%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 2px solid #000000;
+}
+
+#srp_price::placeholder {
+	color: black;
+}

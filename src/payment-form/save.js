@@ -23,41 +23,71 @@
   */
  export default function save ( args )
  {
+	 var taxAmount = ( args.attributes.vat / 100 ) * args.attributes.price;
 	 return (
-		 <div>
+		 <div className='srpContainer'>
 			 <h1 className='srpHeader'>{ args.attributes.title }</h1>
-			 <div className='srpDetails'>
-				 { args.attributes.price && <p className='srpDetails'> { args.attributes.price } </p> }
-				 { !args.attributes.price && <div>
-					<label for='srp_price'>{ __( 'Price', 'srp' ) }</label>
-					<input id='srp_price' placeholder = 'Enter amount' type='number' className='srp_price'/>
-				 </div>
-				 }
-				 {args.attributes.recurring &&
-					 <p className='srpDetails'> { args.attributes.recurring } </p>
-				 }
-				 { args.attributes.recurring_term &&
-					 <p className='srpDetails'> { args.attributes.recurring_term } </p>
-				 }
-				 <p className='srpDetails'> { args.attributes.gateway } </p>
-				 { args.attributes.vat &&
-					 <p className='srpDetails'> { args.attributes.vat } </p>
-				 }
-			 </div>
-			 <form className='srpHeader' method="POST">
-				 <input type="number" placeholder="Enter Amount to Donate"></input>
+			 <h2 className='srpSubHeader'>{ args.attributes.form_subtitle }</h2>
+			 <h3 className='srpTitle'> Payment Details </h3>
+			 <form className='srpPaymentForm' method="POST">
+				<div className='srpDetails'>
+					{ args.attributes.price &&
+						<div className='srpDetailsBlock'>
+							 <p className='srpDetailsLabel'>Amount: </p>
+							 <input type='hidden' value={args.attributes.price} name='srpAmount'></input>
+							 <p className='srpDetails'> $ { args.attributes.price } </p>
+						</div>
+					}
+					{ !args.attributes.price && <div className='srpDetailsBlock'>
+						 <p className='srpDetailsLabel'>{ __( 'Price', 'srp' ) }</p>
+						 <input id='srp_price' placeholder='Enter amount' type='number' className='srpDetails' name='srpAmount'/>
+					</div>
+					}
+					{ args.attributes.recurring &&
+						<div className='srpDetailsBlock'>
+							 <p className='srpDetailsLabel'> Subscription: </p>
+							 <input type='hidden' value='yes' name='isRecurring'></input>
+							<p className='srpDetails'> Yes </p>
+						</div>
+					}
+					{ !args.attributes.recurring &&
+						<div className='srpDetailsBlock'>
+							 <p className='srpDetailsLabel'> Subscription: </p>
+							 <input type='hidden' value='no' name='isRecurring'></input>
+							<p className='srpDetails'> No </p>
+						</div>
+					}
+					{ args.attributes.recurring &&
+						<div className='srpDetailsBlock'>
+							<p className='srpDetailsLabel'>Subscription Period: </p>
+							<select id="srp_recurring_term" value={ args.attributes.recurring_term } className='srpDetails'>
+							<option value='yearly'>{ __( 'Yearly', 'srp' ) }</option>
+							<option value='monthly'>{ __( 'Monthly', 'srp' ) }</option>
+							<option value='weekly'>{ __( 'Weekly', 'srp' ) }</option>
+							<option value='daily'>{ __( 'Daily', 'srp' ) }</option>
+							</select>
+						</div>
+					}
+					<div className='srpDetailsBlock'>
+						 <p className='srpDetailsLabel'>Gateway: </p>
+						 <input type='hidden' value={args.attributes.gateway} name='srpGateway'></input>
+						 <p className='srpDetails'> { args.attributes.gateway } </p>
+					</div>
+					{ args.attributes.vat &&
+						<div className='srpDetailsBlock'>
+							 <p className='srpDetailsLabel'>VAT ({ args.attributes.vat }%): </p>
+							 <input type='hidden' value={ taxAmount } name='srpVat'></input>
+							<p className='srpDetails'> $ { taxAmount } </p>
+						</div>
+					}
+				</div>
+				 {/* <label for="srpDonateAmount">Amount: </label>
+				 <input type="number" placeholder="Enter Amount to Donate" name='srpDonateAmount'></input>
 				 { args.attributes.recurring &&
 					 <><input type="radio" name="srpRecurring" value="yes">Yes</input><input type="radio" name="srpRecurring" value="no">No</input></>
-				 }
-				 { args.attributes.recurring_term &&
-					 <select id="srpRecurringTerm">
-						 <option className="daily">Daily</option>
-						 <option className="weekly">Weekly</option>
-						 <option className="monthly">Monthly</option>
-						 <option className="yearly">Yearly</option>
-					 </select>
-				 }
-				 <button type="submit"> Donate Now </button>
+				 } */}
+				 <input type='hidden' value={args.attributes.price + taxAmount} name='srpTotalAmount'></input>
+				 <button type="submit" className='srpSubmitButton'> Donate Now </button>
 			 </form>
 		 </div>
 	 );
