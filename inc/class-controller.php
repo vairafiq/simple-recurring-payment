@@ -11,7 +11,9 @@ if (!class_exists('SRP_Controller')) :
         public function __construct()
         {
             // add_action( 'admin_enqueue_scripts', array( $this, 'add_assets' ) );
-            add_action('init', array($this, 'create_block_hackathon_block_init'));
+            add_action('init', array($this, 'init'));
+            add_action( 'admin_menu', array( $this, 'add_menu_pages' ) );
+
             // add_action('attc_import_tab_content', array($this, 'attc_tab_content'), 10);
 
             // add_action('wp_ajax_tablegen_imort_from_google', array($this, 'import_from_google'));
@@ -91,48 +93,86 @@ if (!class_exists('SRP_Controller')) :
         }
 
 
-         /**
-        * It hooks into the Table Generator plugin's edit page and output theme section in the tab.
-        * @param array $table It contains all the data of the table where we are hooking into
-        */
-        public function attc_tab_content( $table )
+        public function add_menu_pages()
         {
-            ?>
-                <div class="tab-pane fade" id="table_setting">
-                    <div class="container-fluid attc_import_view">
-                        <div class="row">
-                            <div class="col-md-5 col-md-offset-3">
-                                <form action="" method="post" id="tablegen_imort_from_google">
-                                    <div class="upload_content">
-                                        <div class="upload_wrapper">
-                                            <label for="sheet_key"><?php esc_html_e( 'Sheet Key', 'tablegen-google-sheet-integration' ); ?>*</label>
-                                            <input type="text" required name="sheet_key" class="attc_input_field" placeholder="<?php esc_html_e( 'Enter your google sheet key', 'tablegen-google-sheet-integration' ); ?>" />
-
-                                            <label for="sheet_id"><?php esc_html_e( 'Sheet ID', 'tablegen-google-sheet-integration' ); ?></label>
-                                            <input type="text" name="sheet_id" class="attc_input_field" placeholder="<?php esc_html_e( 'Enter your google sheet id if you have more than one, Defaule: first sheet', 'tablegen-google-sheet-integration' ); ?>" />
-                                            
-                                            <label for="table_name"><?php esc_html_e( 'Table Name', 'tablegen-google-sheet-integration' ); ?>*</label>
-                                            <input type="text" required name="table_name" class="attc_input_field" placeholder="<?php esc_html_e( 'Enter your table name', 'tablegen-google-sheet-integration' ); ?>" />
-                                            
-                                            <label for="table_description"><?php esc_html_e( 'Table Description', 'tablegen-google-sheet-integration' ); ?></label>
-                                            <input type="text" name="table_description" class="attc_input_field" placeholder="<?php esc_html_e( 'Enter your description', 'tablegen-google-sheet-integration' ); ?>" />
-                                        </div>
-                                        <button class="attc_btn attc_google_import_btn" type="submit" name="button"><?php esc_html_e( 'Import Sheet', 'tablegen-google-sheet-integration' ); ?></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php
+            add_submenu_page(
+                'edit.php?post_type=srp_orders',
+                'Settings',
+                'Settings',
+                'manage_options',
+                'srp-settings',
+                [ $this, 'menu_page_output' ],
+                12
+            );
+        }
+        
+        public function menu_page_output() {
+            echo "Hi there";
         }
 
          /**
          * It output a tab menu item in the tab of Table Generator plugin's edit screen by hooking there
          */
-        public function create_block_hackathon_block_init()
+        public function init()
         {
             register_block_type( SRP_BASE_DIR . '/build/payment-form' );
+
+            $this->register_post_type();
+        }
+
+        protected function register_post_type()
+        {
+            $labels = array(
+                'name'                  => _x( 'Order Histories', 'Post Type General Name', 'text_domain' ),
+                'singular_name'         => _x( 'Order History', 'Post Type Singular Name', 'text_domain' ),
+                'menu_name'             => __( 'Payments', 'text_domain' ),
+                'name_admin_bar'        => __( 'Payment', 'text_domain' ),
+                'archives'              => __( 'Item Archives', 'text_domain' ),
+                'attributes'            => __( 'Item Attributes', 'text_domain' ),
+                'parent_item_colon'     => __( 'Parent Item:', 'text_domain' ),
+                'all_items'             => __( 'All Orders', 'text_domain' ),
+                'edit_item'             => __( 'Edit Item', 'text_domain' ),
+                'update_item'           => __( 'Update Item', 'text_domain' ),
+                'view_item'             => __( 'View Item', 'text_domain' ),
+                'view_items'            => __( 'View Items', 'text_domain' ),
+                'search_items'          => __( 'Search Item', 'text_domain' ),
+                'not_found'             => __( 'Not found', 'text_domain' ),
+                'not_found_in_trash'    => __( 'Not found in Trash', 'text_domain' ),
+                'featured_image'        => __( 'Featured Image', 'text_domain' ),
+                'set_featured_image'    => __( 'Set featured image', 'text_domain' ),
+                'remove_featured_image' => __( 'Remove featured image', 'text_domain' ),
+                'use_featured_image'    => __( 'Use as featured image', 'text_domain' ),
+                'insert_into_item'      => __( 'Insert into item', 'text_domain' ),
+                'uploaded_to_this_item' => __( 'Uploaded to this item', 'text_domain' ),
+                'items_list'            => __( 'Items list', 'text_domain' ),
+                'items_list_navigation' => __( 'Items list navigation', 'text_domain' ),
+                'filter_items_list'     => __( 'Filter items list', 'text_domain' ),
+            );
+            $args = array(
+                'label'                 => __( 'Order History', 'text_domain' ),
+                'description'           => __( 'Order History of All Payments', 'text_domain' ),
+                'labels'                => $labels,
+                'supports'              => array( 'title' ),
+                'taxonomies'            => array(),
+                'hierarchical'          => false,
+                'public'                => true,
+                'show_ui'               => true,
+                'show_in_menu'          => true,
+                'menu_icon'             => 'dashicons-cart',
+                'menu_position'         => 5,
+                'show_in_admin_bar'     => true,
+                'show_in_nav_menus'     => true,
+                'can_export'            => true,
+                'has_archive'           => true,
+                'exclude_from_search'   => false,
+                'publicly_queryable'    => true,
+                'capability_type'       => 'page',
+                'capabilities' => array(
+                    'create_posts' => false, // Removes support for the "Add New" function ( use 'do_not_allow' instead of false for multisite set ups )
+                  ),
+                'map_meta_cap' => true, // Set to `false`, if users are not allowed to edit/delete existing posts
+            );
+            register_post_type( 'srp_orders', $args );
         }
 
     }
