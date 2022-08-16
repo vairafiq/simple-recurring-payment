@@ -27,7 +27,12 @@
 		 <div>
 			 <h1 className='srpHeader'>{ args.attributes.title }</h1>
 			 <div className='srpDetails'>
-				{args.attributes.price && <p className='srpDetails'> { args.attributes.price }</p>}
+				 { args.attributes.price && <p className='srpDetails'> { args.attributes.price } </p> }
+				 { !args.attributes.price && <div>
+					<label for='srp_price'>{ __( 'Price', 'srp' ) }</label>
+					<input id='srp_price' placeholder = 'Enter amount' type='number' className='srp_price'/>
+				 </div>
+				 }
 				 {args.attributes.recurring &&
 					 <p className='srpDetails'> { args.attributes.recurring } </p>
 				 }

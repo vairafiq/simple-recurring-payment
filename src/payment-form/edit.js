@@ -32,7 +32,8 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 	
 	return (
-		<div {...useBlockProps()}  className='srp_admin_container'>
+		<div { ...useBlockProps() } >
+			<div className='srp_admin_container'>
 			<div>
 				<h4>{ __( 'Payment Form', 'srp' ) }</h4>
 				<p>{ __( 'Start collecting money right way!', 'srp' ) }</p>
@@ -81,6 +82,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					</select>
 				</p>
 			</div>
-		</div>
+			</div>
+			</div>
 	);
 }
