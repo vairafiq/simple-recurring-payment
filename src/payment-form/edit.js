@@ -36,12 +36,16 @@ export default function Edit( { attributes, setAttributes } ) {
 			<div className='srp_admin_container'>
 			<div>
 				<h4>{ __( 'Payment Form', 'srp' ) }</h4>
-				<p>{ __( 'Start collecting money right way!', 'srp' ) }</p>
 			</div>
 			<div className='srp_admin_form'>
+				
 				<p>
 					<label for='srp_title'>{ __( 'Title', 'srp' ) }</label>
 					<input id='srp_title' value={ attributes.title } onChange={ ( event ) => { setAttributes( { title: event.target.value } ) } } type='text' className='srp_title'/>
+				</p>
+				<p>
+					<label for='srp_form_subtitle'>{ __( 'Form Subtitle', 'srp' ) }</label>
+					<input id='srp_form_subtitle' value={ attributes.form_subtitle } onChange={ ( event ) => { setAttributes( { form_subtitle: event.target.value } ) } } type='text' placeholder={ __( 'Start collecting money right way!', 'srp' ) } className='form_subtitle'/>
 				</p>
 				<p>
 					<label for='srp_price'>{ __( 'Default Price', 'srp' ) }</label>

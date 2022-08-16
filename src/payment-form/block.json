@@ -5,8 +5,8 @@
 	"version": "0.1.0",
 	"title": "Simple Recurring Payment",
 	"category": "widgets",
-	"icon": "smiley",
-	"description": "Example static block scaffolded with Create Block tool.",
+	"icon": "cart",
+	"description": "A great block for collecting recurring payment",
 	"supports": {
 		"html": false
 	},
@@ -17,7 +17,11 @@
 	"attributes" : {
 		"title" : {
 			"type" : "string",
-			"default" : "My Donation"
+			"default" : "My Payment Form"
+		},
+		"form_subtitle" : {
+			"type" : "string",
+			"default" : "Start collecting money right way!"
 		},
 		"price" : {
 			"type" : "string"
