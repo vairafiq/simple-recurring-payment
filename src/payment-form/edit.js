@@ -30,7 +30,7 @@ import './editor.scss';
  * @return {WPElement} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	console.log( attributes );
+	
 	return (
 		<div {...useBlockProps()}  className='srp_admin_container'>
 			<div>
@@ -47,12 +47,20 @@ export default function Edit( { attributes, setAttributes } ) {
 					<input id='srp_price' value={ attributes.price } onChange={ ( event ) => { setAttributes( { price: event.target.value } ) } } type='number' className='srp_price'/>
 				</p>
 				<p>
-					<label for='srp_vat'>{ __( 'Vat', 'srp' ) }</label>
+					<label for='srp_vat'>{ __( 'Vat (%)', 'srp' ) }</label>
 					<input id='srp_vat' value={ attributes.vat } onChange={ ( event ) => { setAttributes( { vat: event.target.value } ) } } type='number' className='srp_vat'/>
 				</p>
 				<p>
 					<label for='srp_recurring'>{ __( 'Allow Recurring', 'srp' ) }</label>
-					<input id='srp_recurring' value={  attributes.recurring } { ...attributes.recurring && 'checked' } onChange={ ( event ) => { setAttributes( { recurring: event.target.value } ) } } type='checkbox' className='srp_recurring'/>
+					<input id='srp_recurring' checked={attributes.recurring} onChange={ ( event ) => { 
+						const target = event.target;
+						const value = target.type === 'checkbox' ? target.checked : target.value;
+						setAttributes( { 
+							recurring: value
+						} );
+
+
+						} } type='checkbox' className='srp_recurring'/>
 				</p>
 				<p>
 					<label for='srp_gateway'>{ __( 'Default Gateway', 'srp' ) }</label>
