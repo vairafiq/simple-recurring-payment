@@ -29,17 +29,17 @@
 			 <div className='srpDetails'>
 				{args.attributes.price && <p className='srpDetails'> { args.attributes.price }</p>}
 				 {args.attributes.recurring &&
-					 <p className='srpDetails'> { args.attributes.recurring }</p>
+					 <p className='srpDetails'> { args.attributes.recurring } </p>
 				 }
 				 { args.attributes.recurring_term &&
-					 <p className='srpDetails'> { args.attributes.recurring_term }</p>
+					 <p className='srpDetails'> { args.attributes.recurring_term } </p>
 				 }
-				 <p className='srpDetails'> { args.attributes.gateway }</p>
+				 <p className='srpDetails'> { args.attributes.gateway } </p>
 				 { args.attributes.vat &&
-					 <p className='srpDetails'> { args.attributes.vat }</p>
+					 <p className='srpDetails'> { args.attributes.vat } </p>
 				 }
 			 </div>
-			 <form className='srpHeader'	method="POST">
+			 <form className='srpHeader' method="POST">
 				 <input type="number" placeholder="Enter Amount to Donate"></input>
 				 { args.attributes.recurring &&
 					 <><input type="radio" name="srpRecurring" value="yes">Yes</input><input type="radio" name="srpRecurring" value="no">No</input></>
