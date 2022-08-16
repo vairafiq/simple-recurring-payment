@@ -44,7 +44,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<input id='srp_title' value={ attributes.title } onChange={ ( event ) => { setAttributes( { title: event.target.value } ) } } type='text' className='srp_title'/>
 				</p>
 				<p>
-					<label for='srp_price'>{ __( 'Price', 'srp' ) }</label>
+					<label for='srp_price'>{ __( 'Default Price', 'srp' ) }</label>
 					<input id='srp_price' value={ attributes.price } onChange={ ( event ) => { setAttributes( { price: event.target.value } ) } } type='number' className='srp_price'/>
 				</p>
 				<p>
