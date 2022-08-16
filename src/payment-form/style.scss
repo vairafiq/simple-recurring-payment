@@ -10,13 +10,22 @@
 	color: #fff;
 	padding: 2px;
 }
-.srp_admin_form p label {
-	margin-right: 30px;
-}
-.srp_admin_form input {
+.srp_admin_form {
 	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	box-sizing: border-box;
+}
+.srp_admin_form p {
+	width: 100%;
+	display: block;
+}
+.srp_admin_form p label {
+	width: 30%;
+	display: inline-block;
+}
+.srp_admin_form p input, select {
+	width: 65%;
+	display: inline-block;
+  }
+  .srp_admin_form input[type='checkbox'] {
+	width: unset;
   }
 

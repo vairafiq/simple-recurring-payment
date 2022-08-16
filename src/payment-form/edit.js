@@ -32,7 +32,7 @@ import './editor.scss';
 export default function Edit( { attributes, setAttributes } ) {
 	console.log( attributes );
 	return (
-		<div {...useBlockProps()} >
+		<div {...useBlockProps()}  className='srp_admin_container'>
 			<div>
 				<h4>{ __( 'Payment Form', 'srp' ) }</h4>
 				<p>{ __( 'Start collecting money right way!', 'srp' ) }</p>
@@ -52,7 +52,7 @@ export default function Edit( { attributes, setAttributes } ) {
 				</p>
 				<p>
 					<label for='srp_recurring'>{ __( 'Allow Recurring', 'srp' ) }</label>
-					<input id='srp_recurring' value={ attributes.recurring } onChange={ ( event ) => { setAttributes( { recurring: event.target.value } ) } } type='checkbox' className='srp_recurring'/>
+					<input id='srp_recurring' value={  attributes.recurring } { ...attributes.recurring && 'checked' } onChange={ ( event ) => { setAttributes( { recurring: event.target.value } ) } } type='checkbox' className='srp_recurring'/>
 				</p>
 				<p>
 					<label for='srp_gateway'>{ __( 'Default Gateway', 'srp' ) }</label>
